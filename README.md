@@ -23,7 +23,7 @@ The repository starts with the following structure:
 ```
 standalone_web_maps_foss4g2025/
 ├── README.md                    # This file
-├── Makefile                     # Build and serve commands (uses Caddy)
+├── Caddyfile                    # Build and serve commands (uses Caddy)
 ├── lib/                         # Third-party libraries and resources (self-contained)
 │   ├── maplibre-gl.5.10.0.js    # MapLibre GL JS library
 │   ├── maplibre-gl.5.10.0.css   # MapLibre GL JS styles
@@ -48,7 +48,7 @@ By the end of the workshop, you will have this:
 ```
 standalone_web_maps_foss4g2025/
 ├── README.md                    # This file
-├── Makefile                     # Build and serve commands (uses Caddy)
+├── Caddyfile                    # Build and serve commands (uses Caddy)
 ├── index.html                   # Main HTML file for the web map (contains inline CSS and JavaScript)
 ├── style.json                   # MapLibre style specification (sources, layers, styling)
 ├── lib/                         # Third-party libraries (self-contained)
