@@ -14,6 +14,12 @@
     "te-ara-hura": {
       "type": "geojson",
       "data": "sources/te_ara_hura.geojson"
+    },
+    "terrain": {
+      "type": "raster-dem",
+      "url": "pmtiles://sources/waiheke_island_terrain.pmtiles",
+      "tileSize": 256,
+      "encoding": "terrarium"
     }
   },
   "sprite": "https://sjmin-gaia3d.github.io/standalone_web_maps_foss4g2025/lib/sprite/light",
@@ -26,6 +32,18 @@
       "source-layer": "earth",
       "filter": ["==", "$type", "Polygon"],
       "paint": {"fill-color": "#e2dfda"}
+    },
+    {
+      "id": "hillshade",
+      "type": "hillshade",
+      "source": "terrain",
+      "paint": {
+        "hillshade-accent-color": "hsla(0, 0%, 0%, 0.1)",
+        "hillshade-exaggeration": 0.5,
+        "hillshade-highlight-color": "hsla(0, 0%, 100%, 0.1)",
+        "hillshade-illumination-direction": 315,
+        "hillshade-shadow-color": "hsla(0, 0%, 0%, 0.5)"
+      }
     },
     {
       "id": "landcover",
@@ -4357,12 +4375,23 @@
       }
     },
     {
-      "id": "trail-line",
+      "id": "te-ara-hura",
       "type": "line",
       "source": "te-ara-hura",
       "paint": {
         "line-color": "#e41f18",
         "line-width": 3,
+        "line-dasharray": [2, 2]
+      }
+    },
+    {
+      "id": "te-ara-hura-hover",
+      "type": "line",
+      "source": "te-ara-hura",
+      "paint": {
+        "line-color": "#ff0000",
+        "line-width": 5,
+        "line-opacity": 0.7,
         "line-dasharray": [2, 2]
       }
     }

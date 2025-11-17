@@ -11,6 +11,11 @@
   
   <!-- PMTiles support -->
   <script src="lib/pmtiles.4.3.0.js"></script>
+  <script>
+    // Initialize PMTiles protocol
+    const protocol = new pmtiles.Protocol();
+    maplibregl.addProtocol("pmtiles", protocol.tile);
+  </script>
   <style>
     /* Required CSS statements defining the map to be the full size of the viewport*/
     #map {
@@ -21,15 +26,36 @@
 </head>
 <body>
   <div id="map"></div>
-  
   <script>
-    // Javascript to create a new map using Maplibre GL JS
-    const map = new maplibregl.Map({
-      container: 'map',
-      style: 'style.json',
-      center: [175.0709, -36.7990], // Waiheke Island coordinates
-      zoom: 12
+  const map = new maplibregl.Map({
+    container: 'map',
+    style: 'style.json',
+    center: [175.0709, -36.7990],
+    zoom: 12
+  });
+
+  map.on('load', () => {
+
+    // Controls
+    map.addControl(new maplibregl.NavigationControl(), 'top-right');
+    map.addControl(new maplibregl.ScaleControl({
+      maxWidth: 100,
+      unit: 'metric'
+    }), 'bottom-left');
+
+    // Hover 이벤트
+    map.on('mouseenter', 'te-ara-hura', () => {
+      map.setLayoutProperty('te-ara-hura', 'visibility', 'none');
+      map.setLayoutProperty('te-ara-hura-hover', 'visibility', 'visible');
     });
-  </script>
+
+    map.on('mouseleave', 'te-ara-hura-hover', () => {
+      map.setLayoutProperty('te-ara-hura', 'visibility', 'visible');
+      map.setLayoutProperty('te-ara-hura-hover', 'visibility', 'none');
+    });
+
+  });
+</script>
+
 </body>
 </html>
